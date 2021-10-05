@@ -17,6 +17,7 @@
         "vsce": "^1.100.1"
     },
     "displayName": "Feeny",
+    "icon": "images/icon.png",
     "publisher": "DanielRosenwasser",
     "engines": {
         "vscode": "^1.60.0"
