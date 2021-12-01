@@ -12,7 +12,16 @@
             "include": "#integers"
         },
         {
-            "include": "#operators"
+            "include": "#square-brackets"
+        },
+        {
+            "include": "#parentheses"
+        },
+        {
+            "include": "#slot-access-operator"
+        },
+        {
+            "include": "#shorthand-operators"
         },
         {
             "include": "#variables"
@@ -34,16 +43,28 @@
         },
         "integers": {
             "name": "constant.numeric",
-            "match": "\\b\\d+\\b"
+            "match": "(?<![a-zA-Z\\d\\+\\-\\*\\?/%<>=])-?\\d+\\b"
         },
-        "operators": {
+        "square-brackets": {
+            "name": "meta.brace.square.feeny",
+            "match": "\\[|\\]"
+        },
+        "parentheses": {
+            "name": "meta.brace.round.feeny",
+            "match": "\\(|\\)"
+        },
+        "slot-access-operator": {
+            "name": "punctuation.accessor.feeny",
+            "match": "\\."
+        },
+        "shorthand-operators": {
             "name": "keyword.operator",
             "comment": "It seems like in Feeny, operators are tokenized the same as identifiers - but it would be nice if they appeared distinct.",
-            "match": "(?:(?<![a-zA-Z])(?:\\+|-|\\*|\\?|/|%|<|>|<=|>=|==|=)(?![a-zA-Z]))|:"
+            "match": "(?:(?<![a-zA-Z\\+\\-\\*\\?/%<>=])(?:\\+|-|\\*|\\?|/|%|<|>|<=|>=|==|=)(?![a-zA-Z\\d\\+\\-\\*\\?/%<>=]))|:"
         },
         "variables": {
             "name": "variable.name",
-            "match": "[a-zA-Z\\+\\-\\*\\?/%<>=]+"
+            "match": "(:?(:?[\\-][a-zA-Z\\+\\-\\*\\?/%<>=])|[a-zA-Z\\+\\*\\?/%<>=])[a-zA-Z\\d\\+\\-\\*\\?/%<>=]*"
         },
         "strings": {
             "name": "string.quoted.double.feeny",
@@ -53,6 +74,10 @@
                 {
                     "name": "constant.character.escape.feeny",
                     "match": "\\\\."
+                },
+                {
+                    "name": "string.interpolated.feeny",
+                    "match": "~"
                 }
             ]
         }
